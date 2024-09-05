@@ -36,4 +36,12 @@ public class RacingService {
     public Integer selectRandomNumber(){
         return Randoms.pickNumberInRange(0,9);
     }
+
+    public boolean judgeRandomNumberSize(){
+        if(selectRandomNumber().compareTo(4)<0){
+            return false;
+        }
+
+        return true;
+    }
 }
