@@ -46,4 +46,18 @@ class RacingServiceTest {
         assertThat(cars).extracting(Car::getCarName)
                 .containsExactlyInAnyOrder("pobi","woni","jun");
     }
+
+    @DisplayName("시도할 횟수를 입력받는다.")
+    @Test
+    void InputNumberOfTries() {
+        //given
+        final String input = "5";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        //when
+        Integer numberOfTries = racingService.inputNumberOfTries();
+
+        //then
+        assertThat(numberOfTries).isEqualTo(5);
+    }
 }
