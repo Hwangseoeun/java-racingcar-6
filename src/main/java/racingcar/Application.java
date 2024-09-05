@@ -4,10 +4,10 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        CarService carService = new CarService();
+        RacingService racingService = new RacingService();
 
-        String carNames = carService.inputCarNames();
+        String carNames = racingService.inputCarNames();
 
-        List<Car> cars = carService.parseCarNamesToArray(carNames);
+        List<Car> cars = racingService.parseCarNamesToArray(carNames);
     }
 }

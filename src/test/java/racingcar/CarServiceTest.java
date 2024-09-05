@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarServiceTest {
 
-    private CarService carService;
+    private RacingService racingService;
 
     @BeforeEach
     void setUp() {
-        carService = new CarService();
+        racingService = new RacingService();
     }
 
     @DisplayName("경주할 자동차의 이름을 입력받는다.")
@@ -27,7 +27,7 @@ class CarServiceTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         //when
-        String carNames = carService.inputCarNames();
+        String carNames = racingService.inputCarNames();
 
         //then
         assertThat(carNames).isEqualTo("pobi,woni,jun");
@@ -41,7 +41,7 @@ class CarServiceTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         //when
-        List<Car> cars = carService.parseCarNamesToArray(input);
+        List<Car> cars = racingService.parseCarNamesToArray(input);
 
         //then
         assertThat(cars).extracting(Car::getCarName)
