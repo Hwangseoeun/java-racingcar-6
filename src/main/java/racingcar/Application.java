@@ -7,7 +7,8 @@ public class Application {
         RacingService racingService = new RacingService();
 
         String carNames = racingService.inputCarNames();
-
         List<Car> cars = racingService.parseCarNamesToArray(carNames);
+
+        Integer numberOfTries = racingService.InputNumberOfTries();
     }
 }
