@@ -9,6 +9,6 @@ public class Application {
         String carNames = racingService.inputCarNames();
         List<Car> cars = racingService.parseCarNamesToArray(carNames);
 
-        Integer numberOfTries = racingService.InputNumberOfTries();
+        Integer numberOfTries = racingService.inputNumberOfTries();
     }
 }
