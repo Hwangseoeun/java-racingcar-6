@@ -33,15 +33,16 @@ public class RacingService {
         return Integer.parseInt(Console.readLine());
     }
 
+    public void decideAdvance(){
+        Integer randomNumber = selectRandomNumber();
+        judgeRandomNumberSize(randomNumber);
+    }
+
     public Integer selectRandomNumber(){
         return Randoms.pickNumberInRange(0,9);
     }
 
-    public boolean judgeRandomNumberSize(){
-        if(selectRandomNumber().compareTo(4)<0){
-            return false;
-        }
-
-        return true;
+    public boolean judgeRandomNumberSize(Integer number){
+        return number.compareTo(4)>=0;
     }
 }

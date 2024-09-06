@@ -10,5 +10,7 @@ public class Application {
         List<Car> cars = racingService.parseCarNamesToArray(carNames);
 
         Integer numberOfTries = racingService.inputNumberOfTries();
+
+        racingService.decideAdvance();
     }
 }
