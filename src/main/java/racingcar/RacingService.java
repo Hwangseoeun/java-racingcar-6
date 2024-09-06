@@ -12,8 +12,8 @@ public class RacingService {
 
     private List<Car> carList;
 
-    public List<Car> saveCarNames(){
-        return parseCarNamesToArray(inputCarNames());
+    public List<Car> getCarList() {
+        return carList;
     }
 
     public String inputCarNames(){
@@ -40,9 +40,9 @@ public class RacingService {
         return Integer.parseInt(Console.readLine());
     }
 
-    public void decideAdvance(){
+    public boolean decideAdvance(){
         Integer randomNumber = selectRandomNumber();
-        judgeRandomNumberSize(randomNumber);
+        return judgeRandomNumberSize(randomNumber);
     }
 
     public Integer selectRandomNumber(){
