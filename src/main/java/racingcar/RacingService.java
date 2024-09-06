@@ -8,6 +8,7 @@ import java.util.*;
 public class RacingService {
 
     private List<Car> carList;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
 
     public List<Car> getCarList() {
         return carList;
@@ -34,9 +35,7 @@ public class RacingService {
     }
 
     public void checkCarNameCharCount(String carNames){
-        final int maxCarNameLength = 5;
-
-        if(carNames.length() > maxCarNameLength){
+        if(carNames.length() > MAX_CAR_NAME_LENGTH){
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
     }
