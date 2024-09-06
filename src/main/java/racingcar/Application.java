@@ -12,5 +12,7 @@ public class Application {
         Integer numberOfTries = racingService.inputNumberOfTries();
 
         racingService.decideAdvance();
+
+        racingService.chooseRandomCars();
     }
 }

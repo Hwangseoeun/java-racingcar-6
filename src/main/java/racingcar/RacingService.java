@@ -47,4 +47,25 @@ public class RacingService {
     public boolean judgeRandomNumberSize(Integer number){
         return number.compareTo(4)>=0;
     }
+
+    public List<String> chooseRandomCars(){
+        List<String> selectedCarNames = new ArrayList<>();
+
+        for(Integer randomIndex : randomCarIndexNumbers()){
+            Car randomCar = carList.get(randomIndex);
+            selectedCarNames.add(randomCar.getCarName());
+        }
+
+        return selectedCarNames;
+    }
+
+    public Integer selectRandomCarCount(){
+        return Randoms.pickNumberInRange(1,carList.size());
+    }
+
+    public List<Integer> randomCarIndexNumbers(){
+        Integer randomCarCount = selectRandomCarCount();
+
+        return Randoms.pickUniqueNumbersInRange(0, carList.size()-1, randomCarCount);
+    }
 }
