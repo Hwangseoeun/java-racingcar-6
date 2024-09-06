@@ -25,10 +25,20 @@ public class RacingService {
         StringTokenizer st = new StringTokenizer(carNames, ",");
 
         while(st.hasMoreTokens()) {
-            carList.add(new Car(st.nextToken().trim()));
+            String carName = st.nextToken().trim();
+            checkCarNameCharCount(carName);
+            carList.add(new Car(carName));
         }
 
         return carList;
+    }
+
+    public void checkCarNameCharCount(String carNames){
+        final int maxCarNameLength = 5;
+
+        if(carNames.length() > maxCarNameLength){
+            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+        }
     }
 
     public Integer inputNumberOfTries(){
