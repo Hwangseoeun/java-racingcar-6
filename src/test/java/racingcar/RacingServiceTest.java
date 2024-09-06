@@ -60,4 +60,17 @@ class RacingServiceTest {
         //then
         assertThat(numberOfTries).isEqualTo(5);
     }
+
+    @DisplayName("무작위 값이 4 이상인지 판단한다.")
+    @Test
+    void judgeRandomNumberSize(){
+        //given
+        final Integer number = 5;
+
+        //when
+        Boolean judgeAdvance = racingService.judgeRandomNumberSize(number);
+
+        //then
+        assertThat(judgeAdvance).isEqualTo(true);
+    }
 }
