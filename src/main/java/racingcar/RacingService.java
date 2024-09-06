@@ -88,4 +88,19 @@ public class RacingService {
                 .filter(car -> car.getCarName().equals(name))
                 .findFirst();
     }
+
+    public void printCountView(){
+        for (Car car : carList) {
+            String carName = car.getCarName();
+            int count = car.getCount();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < count; i++) {
+                sb.append("-");
+            }
+
+            System.out.println(carName + " : " + sb.toString());
+        }
+        System.out.println();
+    }
 }

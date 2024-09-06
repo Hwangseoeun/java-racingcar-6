@@ -12,11 +12,16 @@ public class RacingController {
 
     public void start(){
         saveCarNames();
+        printResultText();
         judgeCarMove();
     }
 
     public List<Car> saveCarNames(){
         return racingService.parseCarNamesToArray(racingService.inputCarNames());
+    }
+
+    public void printResultText(){
+        System.out.println("실행 결과");
     }
 
     public void judgeCarMove(){
@@ -26,6 +31,7 @@ public class RacingController {
             if(racingService.decideAdvance()){
                 racingService.increaseCarCount();
             }
+            racingService.printCountView();
         }
     }
 }
