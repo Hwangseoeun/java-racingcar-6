@@ -10,38 +10,38 @@ public class RacingController {
         this.racingService = new RacingService();
     }
 
-    public void start(){
+    public void start() {
         saveCarNames();
         printResultText();
         judgeCarMove();
         printWinnerResult();
     }
 
-    public List<Car> saveCarNames(){
+    public List<Car> saveCarNames() {
         return racingService.parseCarNamesToArray(racingService.inputCarNames());
     }
 
-    public void printResultText(){
+    public void printResultText() {
         System.out.println("실행 결과");
     }
 
-    public void judgeCarMove(){
+    public void judgeCarMove() {
         Integer tryNumber = racingService.inputNumberOfTries();
 
-        for(int i=0; i<tryNumber; i++){
-            if(racingService.decideAdvance()){
+        for(int i=0; i<tryNumber; i++) {
+            if(racingService.decideAdvance()) {
                 racingService.increaseCarCount();
             }
             racingService.printCountView();
         }
     }
 
-    public void printWinnerResult(){
+    public void printWinnerResult() {
         List<String> winners = racingService.findWinners();
 
         StringJoiner joiner = new StringJoiner(", ");
 
-        for (String winner : winners) {
+        for(String winner : winners) {
             joiner.add(winner);
         }
 

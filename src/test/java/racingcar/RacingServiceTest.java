@@ -63,7 +63,7 @@ class RacingServiceTest {
 
     @DisplayName("무작위 값이 4 이상인지 판단한다.")
     @Test
-    void judgeRandomNumberSize(){
+    void judgeRandomNumberSize() {
         //given
         final Integer number = 5;
 

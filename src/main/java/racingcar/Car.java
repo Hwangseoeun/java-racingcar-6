@@ -4,20 +4,20 @@ public class Car {
     private final String carName;
     private int count;
 
-    public Car(String carName){
+    public Car(String carName) {
         this.carName = carName;
         this.count = 0;
     }
 
-    public String getCarName(){
+    public String getCarName() {
         return carName;
     }
 
-    public int getCount(){
+    public int getCount() {
         return count;
     }
 
-    public void move(){
+    public void move() {
         this.count++;
     }
 }

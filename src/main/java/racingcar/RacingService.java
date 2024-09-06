@@ -14,13 +14,13 @@ public class RacingService {
         return carList;
     }
 
-    public String inputCarNames(){
+    public String inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
 
         return Console.readLine();
     }
 
-    public List<Car> parseCarNamesToArray(String carNames){
+    public List<Car> parseCarNamesToArray(String carNames) {
         carList = new ArrayList<>();
 
         StringTokenizer st = new StringTokenizer(carNames, ",");
@@ -34,35 +34,35 @@ public class RacingService {
         return carList;
     }
 
-    public void checkCarNameCharCount(String carNames){
-        if(carNames.length() > MAX_CAR_NAME_LENGTH){
+    public void checkCarNameCharCount(String carNames) {
+        if(carNames.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
     }
 
-    public Integer inputNumberOfTries(){
+    public Integer inputNumberOfTries() {
         System.out.println("시도할 회수는 몇회인가요?");
 
         return Integer.parseInt(Console.readLine());
     }
 
-    public boolean decideAdvance(){
+    public boolean decideAdvance() {
         Integer randomNumber = selectRandomNumber();
         return judgeRandomNumberSize(randomNumber);
     }
 
-    public Integer selectRandomNumber(){
+    public Integer selectRandomNumber() {
         return Randoms.pickNumberInRange(0,9);
     }
 
-    public boolean judgeRandomNumberSize(Integer number){
+    public boolean judgeRandomNumberSize(Integer number) {
         return number.compareTo(4)>=0;
     }
 
-    public List<String> chooseRandomCars(){
+    public List<String> chooseRandomCars() {
         List<String> selectedCarNames = new ArrayList<>();
 
-        for(Integer randomIndex : randomCarIndexNumbers()){
+        for(Integer randomIndex : randomCarIndexNumbers()) {
             Car randomCar = carList.get(randomIndex);
             selectedCarNames.add(randomCar.getCarName());
         }
@@ -70,32 +70,32 @@ public class RacingService {
         return selectedCarNames;
     }
 
-    public Integer selectRandomCarCount(){
+    public Integer selectRandomCarCount() {
         return Randoms.pickNumberInRange(1,carList.size());
     }
 
-    public List<Integer> randomCarIndexNumbers(){
+    public List<Integer> randomCarIndexNumbers() {
         Integer randomCarCount = selectRandomCarCount();
 
         return Randoms.pickUniqueNumbersInRange(0, carList.size()-1, randomCarCount);
     }
 
-    public void increaseCarCount(){
+    public void increaseCarCount() {
         List<String> selectesdCarlist = chooseRandomCars();
 
-        for(String name : selectesdCarlist){
+        for(String name : selectesdCarlist) {
             Optional<Car> findCar = findCarByName(carList, name);
             findCar.ifPresent(Car::move);
         }
     }
 
-    public Optional<Car> findCarByName(List<Car> carList, String name){
+    public Optional<Car> findCarByName(List<Car> carList, String name) {
         return carList.stream()
                 .filter(car -> car.getCarName().equals(name))
                 .findFirst();
     }
 
-    public void printCountView(){
+    public void printCountView() {
         for (Car car : carList) {
             String carName = car.getCarName();
             int count = car.getCount();
@@ -110,7 +110,7 @@ public class RacingService {
         System.out.println();
     }
 
-    public List<String> findWinners(){
+    public List<String> findWinners() {
         Integer maxCount = findMaxCount();
 
         if (carList == null || carList.isEmpty()) {
@@ -123,7 +123,7 @@ public class RacingService {
                 .toList();
     }
 
-    public Integer findMaxCount(){
+    public Integer findMaxCount() {
         return carList.stream()
                 .mapToInt(Car::getCount)
                 .max()
