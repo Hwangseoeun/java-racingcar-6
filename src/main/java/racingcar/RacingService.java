@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.StringTokenizer;
 
 public class RacingService {
@@ -71,5 +72,20 @@ public class RacingService {
         Integer randomCarCount = selectRandomCarCount();
 
         return Randoms.pickUniqueNumbersInRange(0, carList.size()-1, randomCarCount);
+    }
+
+    public void increaseCarCount(){
+        List<String> selectesdCarlist = chooseRandomCars();
+
+        for(String name : selectesdCarlist){
+            Optional<Car> findCar = findCarByName(carList, name);
+            findCar.ifPresent(Car::move);
+        }
+    }
+
+    public Optional<Car> findCarByName(List<Car> carList, String name){
+        return carList.stream()
+                .filter(car -> car.getCarName().equals(name))
+                .findFirst();
     }
 }
