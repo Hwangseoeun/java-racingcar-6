@@ -3,10 +3,7 @@ package racingcar;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class RacingService {
 
@@ -102,5 +99,25 @@ public class RacingService {
             System.out.println(carName + " : " + sb.toString());
         }
         System.out.println();
+    }
+
+    public List<String> findWinners(){
+        Integer maxCount = findMaxCount();
+
+        if (carList == null || carList.isEmpty()) {
+            throw new IllegalArgumentException("자동차의 정보가 없습니다.");
+        }
+
+        return carList.stream()
+                .filter(car -> car.getCount() == maxCount)
+                .map(Car::getCarName)
+                .toList();
+    }
+
+    public Integer findMaxCount(){
+        return carList.stream()
+                .mapToInt(Car::getCount)
+                .max()
+                .orElse(0);
     }
 }

@@ -1,6 +1,6 @@
 package racingcar;
 
-import java.util.List;
+import java.util.*;
 
 public class RacingController {
 
@@ -14,6 +14,7 @@ public class RacingController {
         saveCarNames();
         printResultText();
         judgeCarMove();
+        printWinnerResult();
     }
 
     public List<Car> saveCarNames(){
@@ -33,5 +34,17 @@ public class RacingController {
             }
             racingService.printCountView();
         }
+    }
+
+    public void printWinnerResult(){
+        List<String> winners = racingService.findWinners();
+
+        StringJoiner joiner = new StringJoiner(", ");
+
+        for (String winner : winners) {
+            joiner.add(winner);
+        }
+
+        System.out.print("최종 우승자 : " + joiner.toString());
     }
 }
