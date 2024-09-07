@@ -1,23 +1,23 @@
 package racingcar;
 
 public class Car {
-    private final String carName;
-    private int count;
+    private final String name;
+    private int advanceCount;
 
-    public Car(String carName) {
-        this.carName = carName;
-        this.count = 0;
+    public Car(String name) {
+        this.name = name;
+        this.advanceCount = 0;
     }
 
     public String getCarName() {
-        return carName;
+        return name;
     }
 
-    public int getCount() {
-        return count;
+    public int getAdvanceCount() {
+        return advanceCount;
     }
 
     public void move() {
-        this.count++;
+        this.advanceCount++;
     }
 }

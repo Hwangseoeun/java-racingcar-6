@@ -98,7 +98,7 @@ public class RacingService {
     public void printCountView() {
         for (Car car : carList) {
             String carName = car.getCarName();
-            int count = car.getCount();
+            int count = car.getAdvanceCount();
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < count; i++) {
@@ -118,14 +118,14 @@ public class RacingService {
         }
 
         return carList.stream()
-                .filter(car -> car.getCount() == maxCount)
+                .filter(car -> car.getAdvanceCount() == maxCount)
                 .map(Car::getCarName)
                 .toList();
     }
 
     public Integer findMaxCount() {
         return carList.stream()
-                .mapToInt(Car::getCount)
+                .mapToInt(Car::getAdvanceCount)
                 .max()
                 .orElse(0);
     }
