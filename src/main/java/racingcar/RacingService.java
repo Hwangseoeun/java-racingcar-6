@@ -14,12 +14,6 @@ public class RacingService {
         return carList;
     }
 
-    public String inputCarNames() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-
-        return Console.readLine();
-    }
-
     public List<Car> parseCarNamesToArray(String carNames) {
         carList = new ArrayList<>();
 
@@ -38,12 +32,6 @@ public class RacingService {
         if(carNames.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
-    }
-
-    public Integer inputNumberOfTries() {
-        System.out.println("시도할 회수는 몇회인가요?");
-
-        return Integer.parseInt(Console.readLine());
     }
 
     public boolean decideAdvance() {
@@ -93,21 +81,6 @@ public class RacingService {
         return carList.stream()
                 .filter(car -> car.getCarName().equals(name))
                 .findFirst();
-    }
-
-    public void printCountView() {
-        for (Car car : carList) {
-            String carName = car.getCarName();
-            int count = car.getAdvanceCount();
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < count; i++) {
-                sb.append("-");
-            }
-
-            System.out.println(carName + " : " + sb.toString());
-        }
-        System.out.println();
     }
 
     public List<String> findWinners() {
