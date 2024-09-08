@@ -4,7 +4,7 @@ import java.util.*;
 
 public class RacingController {
 
-    private RacingService racingService;
+    private final RacingService racingService;
 
     public RacingController() {
         this.racingService = new RacingService();
