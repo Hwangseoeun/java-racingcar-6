@@ -7,8 +7,8 @@ import java.util.*;
 
 public class RacingService {
 
-    private List<Car> carList;
     private static final int MAX_CAR_NAME_LENGTH = 5;
+    private List<Car> carList;
 
     public List<Car> getCarList() {
         return carList;
