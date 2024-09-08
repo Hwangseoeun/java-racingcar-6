@@ -6,8 +6,8 @@ public class RacingController {
 
     private final RacingService racingService;
 
-    public RacingController() {
-        this.racingService = new RacingService();
+    public RacingController(RacingService racingService) {
+        this.racingService = racingService;
     }
 
     public void start() {
