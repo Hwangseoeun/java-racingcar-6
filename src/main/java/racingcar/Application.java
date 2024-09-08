@@ -2,9 +2,9 @@ package racingcar;
 
 public class Application {
     public static void main(String[] args) {
-        RacingService racingService = new RacingService();
+        final RacingService racingService = new RacingService();
 
-        RacingController racingController = new RacingController(racingService);
+        final RacingController racingController = new RacingController(racingService);
 
         racingController.start();
     }
