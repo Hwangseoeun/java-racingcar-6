@@ -19,21 +19,21 @@ public class RacingController {
         printWinnerResult();
     }
 
-    public List<Car> saveCarNames() {
-        return racingService.parseCarNamesToArray(inputCarNames());
+    protected void saveCarNames() {
+        racingService.parseCarNamesToArray(inputCarNames());
     }
 
-    public String inputCarNames() {
+    protected String inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
 
         return Console.readLine();
     }
 
-    public void printResultText() {
+    protected void printResultText() {
         System.out.println("실행 결과");
     }
 
-    public void judgeCarMove() {
+    protected void judgeCarMove() {
         Integer tryNumber = inputNumberOfTries();
 
         for(int i=0; i<tryNumber; i++) {
@@ -44,13 +44,13 @@ public class RacingController {
         }
     }
 
-    public Integer inputNumberOfTries() {
+    protected Integer inputNumberOfTries() {
         System.out.println("시도할 회수는 몇회인가요?");
 
         return Integer.parseInt(Console.readLine());
     }
 
-    public void printCountView() {
+    protected void printCountView() {
         for (Car car : racingService.getCarList()) {
             String carName = car.getCarName();
             int count = car.getAdvanceCount();
@@ -65,7 +65,7 @@ public class RacingController {
         System.out.println();
     }
 
-    public void printWinnerResult() {
+    protected void printWinnerResult() {
         List<String> winners = racingService.findWinners();
 
         StringJoiner joiner = new StringJoiner(", ");

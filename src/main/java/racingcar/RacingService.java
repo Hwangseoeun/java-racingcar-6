@@ -27,7 +27,7 @@ public class RacingService {
         return carList;
     }
 
-    public void checkCarNameCharCount(String carNames) {
+    protected void checkCarNameCharCount(String carNames) {
         if(carNames.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
@@ -38,33 +38,12 @@ public class RacingService {
         return judgeRandomNumberSize(randomNumber);
     }
 
-    public Integer selectRandomNumber() {
+    protected Integer selectRandomNumber() {
         return Randoms.pickNumberInRange(0,9);
     }
 
-    public boolean judgeRandomNumberSize(Integer number) {
+    protected boolean judgeRandomNumberSize(Integer number) {
         return number.compareTo(4)>=0;
-    }
-
-    public List<String> chooseRandomCars() {
-        List<String> selectedCarNames = new ArrayList<>();
-
-        for(Integer randomIndex : randomCarIndexNumbers()) {
-            Car randomCar = carList.get(randomIndex);
-            selectedCarNames.add(randomCar.getCarName());
-        }
-
-        return selectedCarNames;
-    }
-
-    public Integer selectRandomCarCount() {
-        return Randoms.pickNumberInRange(1,carList.size());
-    }
-
-    public List<Integer> randomCarIndexNumbers() {
-        Integer randomCarCount = selectRandomCarCount();
-
-        return Randoms.pickUniqueNumbersInRange(0, carList.size()-1, randomCarCount);
     }
 
     public void increaseCarCount() {
@@ -76,7 +55,28 @@ public class RacingService {
         }
     }
 
-    public Optional<Car> findCarByName(List<Car> carList, String name) {
+    protected List<String> chooseRandomCars() {
+        List<String> selectedCarNames = new ArrayList<>();
+
+        for(Integer randomIndex : randomCarIndexNumbers()) {
+            Car randomCar = carList.get(randomIndex);
+            selectedCarNames.add(randomCar.getCarName());
+        }
+
+        return selectedCarNames;
+    }
+
+    protected List<Integer> randomCarIndexNumbers() {
+        Integer randomCarCount = selectRandomCarCount();
+
+        return Randoms.pickUniqueNumbersInRange(0, carList.size()-1, randomCarCount);
+    }
+
+    protected Integer selectRandomCarCount() {
+        return Randoms.pickNumberInRange(1,carList.size());
+    }
+
+    protected Optional<Car> findCarByName(List<Car> carList, String name) {
         return carList.stream()
                 .filter(car -> car.getCarName().equals(name))
                 .findFirst();
@@ -95,7 +95,7 @@ public class RacingService {
                 .toList();
     }
 
-    public Integer findMaxCount() {
+    protected Integer findMaxCount() {
         return carList.stream()
                 .mapToInt(Car::getAdvanceCount)
                 .max()
