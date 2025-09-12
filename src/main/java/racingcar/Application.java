@@ -11,6 +11,6 @@ public class Application {
         RacingService racingService = new RacingService();
         RacingController racingController = new RacingController(inputView, racingService);
 
-        racingController.racingStart();
+        racingController.racingFlow();
     }
 }

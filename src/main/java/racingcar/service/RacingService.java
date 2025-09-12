@@ -2,13 +2,18 @@ package racingcar.service;
 
 import racingcar.model.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RacingService {
 
-    public void saveCarNames(List<String> carNames) {
+    public List<Car> saveCars(List<String> carNames) {
+        List<Car> cars = new ArrayList<>();
+
         for(String carName : carNames) {
-            new Car(carName);
+            cars.add(new Car(carName));
         }
+
+        return cars;
     }
 }
