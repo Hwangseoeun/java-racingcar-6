@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.model.Car;
 import racingcar.service.RacingService;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.List;
 
@@ -11,10 +12,12 @@ public class RacingController {
     private static final int MIN_RANDOM_NUMBER_TO_MOVE = 4;
 
     private final InputView inputView;
+    private final OutputView outputView;
     private final RacingService racingService;
 
-    public RacingController(InputView inputView, RacingService racingService) {
+    public RacingController(InputView inputView, OutputView outputView, RacingService racingService) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.racingService = racingService;
     }
 
@@ -25,8 +28,11 @@ public class RacingController {
 
         final long racingFrequency = inputView.inputRacingFrequency();
 
+        outputView.outputRacingResultMessage();
+
         for(long i = 0; i < racingFrequency; i++) {
             carsMove(cars);
+            outputView.outputRacingResult(cars);
         }
     }
 
