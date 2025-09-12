@@ -33,6 +33,8 @@ public class RacingController {
             outputView.outputRacingResult(cars);
         }
 
+        List<Car> winners = racingService.judgeWinner(cars);
 
+        outputView.outputWinner(winners);
     }
 }
