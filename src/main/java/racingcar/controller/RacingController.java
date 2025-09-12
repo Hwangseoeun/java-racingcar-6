@@ -9,8 +9,6 @@ import java.util.List;
 
 public class RacingController {
 
-    private static final int MIN_RANDOM_NUMBER_TO_MOVE = 4;
-
     private final InputView inputView;
     private final OutputView outputView;
     private final RacingService racingService;
@@ -31,21 +29,10 @@ public class RacingController {
         outputView.outputRacingResultMessage();
 
         for(long i = 0; i < racingFrequency; i++) {
-            carsMove(cars);
+            racingService.moveCars(cars);
             outputView.outputRacingResult(cars);
         }
-    }
 
-    private void carsMove(List<Car> cars) {
-        for(Car car : cars) {
-            final int randomNumber = car.pickRandomNumber();
-            judgeCarMove(car, randomNumber);
-        }
-    }
 
-    private void judgeCarMove(Car car, int randomNumber) {
-        if(randomNumber >= MIN_RANDOM_NUMBER_TO_MOVE) {
-            car.movePosition();
-        }
     }
 }
