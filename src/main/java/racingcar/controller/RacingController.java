@@ -19,5 +19,7 @@ public class RacingController {
         final List<String> carNames = inputView.inputCarNames();
 
         racingService.saveCarNames(carNames);
+
+        final long racingFrequency = inputView.inputRacingFrequency();
     }
 }
