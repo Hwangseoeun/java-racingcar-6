@@ -6,7 +6,7 @@ import java.util.List;
 
 public class InputView {
 
-    public List<String> InputCarNames() {
+    public List<String> inputCarNames() {
         final String names = Console.readLine();
 
         return List.of(names.split(","));

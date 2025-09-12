@@ -16,7 +16,7 @@ public class RacingController {
     }
 
     public void racingStart() {
-        final List<String> carNames = inputView.InputCarNames();
+        final List<String> carNames = inputView.inputCarNames();
 
         racingService.saveCarNames(carNames);
     }
