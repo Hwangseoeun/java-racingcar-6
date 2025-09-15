@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.generator.RandomNumberGenerator;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -29,6 +31,21 @@ class CarTest {
             name
         ))
         .doesNotThrowAnyException();
+    }
+
+    @DisplayName("유효한 인자값(자동차 이름 리스트)이 들어오면 각각의 Car 객체를 생성한 후 리스트로 반환한다.")
+    @Test
+    void givenCarNames_thenReturnCars() {
+        //Given
+        final List<String> names = List.of("A", "B", "C");
+
+        //When
+        List<Car> cars = Car.fromNames(names);
+
+        //Then
+        assertThat(cars.get(0).getName()).isEqualTo(names.get(0));
+        assertThat(cars.get(1).getName()).isEqualTo(names.get(1));
+        assertThat(cars.get(2).getName()).isEqualTo(names.get(2));
     }
 
     @DisplayName("이름으로 null이 들어오면 예외가 발생한다.")
