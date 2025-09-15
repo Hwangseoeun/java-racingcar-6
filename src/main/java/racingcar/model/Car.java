@@ -8,7 +8,7 @@ public class Car {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_RANDOM_NUMBER_TO_MOVE = 4;
 
-    private RandomNumberGenerator randomNumberGenerator;
+    private final RandomNumberGenerator randomNumberGenerator;
 
     final String name;
     int position;
