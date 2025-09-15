@@ -1,12 +1,14 @@
 package racingcar.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.generator.CarMoveRandomNumberGenerator;
+import racingcar.generator.RandomNumberGenerator;
 
 public class Car {
 
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_RANDOM_NUMBER = 0;
-    private static final int MAX_RANDOM_NUMBER = 9;
+    private static final int MIN_RANDOM_NUMBER_TO_MOVE = 4;
+
+    private RandomNumberGenerator randomNumberGenerator;
 
     final String name;
     int position;
@@ -16,6 +18,15 @@ public class Car {
 
         this.name = name;
         this.position = 0;
+        this.randomNumberGenerator = new CarMoveRandomNumberGenerator();
+    }
+
+    public Car(final String name, RandomNumberGenerator randomNumberGenerator) {
+        validateNameLength(name);
+
+        this.name = name;
+        this.position = 0;
+        this.randomNumberGenerator = randomNumberGenerator;
     }
 
     public String getName() {
@@ -26,7 +37,7 @@ public class Car {
         return position;
     }
 
-    public void movePosition() {
+    private void movePosition() {
         this.position++;
     }
 
@@ -36,7 +47,14 @@ public class Car {
         }
     }
 
-    public int pickRandomNumber() {
-        return Randoms.pickNumberInRange(MIN_RANDOM_NUMBER,MAX_RANDOM_NUMBER);
+    public void move() {
+        final int randomNumber = randomNumberGenerator.pickRandomNumber(RandomNumberGenerator.MIN_RANDOM_NUMBER, RandomNumberGenerator.MAX_RANDOM_NUMBER);
+        judgeCarMove(randomNumber);
+    }
+
+    private void judgeCarMove(int randomNumber) {
+        if(randomNumber >= MIN_RANDOM_NUMBER_TO_MOVE) {
+            movePosition();
+        }
     }
 }
