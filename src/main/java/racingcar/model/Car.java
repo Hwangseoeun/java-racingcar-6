@@ -3,6 +3,8 @@ package racingcar.model;
 import racingcar.generator.CarMoveRandomNumberGenerator;
 import racingcar.generator.RandomNumberGenerator;
 
+import java.util.List;
+
 public class Car {
 
     private static final int MAX_NAME_LENGTH = 5;
@@ -27,6 +29,12 @@ public class Car {
         this.name = name;
         this.position = 0;
         this.randomNumberGenerator = randomNumberGenerator;
+    }
+
+    public static List<Car> fromNames(List<String> carNames) {
+        return carNames.stream()
+            .map(Car::new)
+            .toList();
     }
 
     public String getName() {

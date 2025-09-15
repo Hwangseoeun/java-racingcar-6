@@ -1,7 +1,7 @@
 package racingcar.controller;
 
 import racingcar.model.Car;
-import racingcar.service.RacingService;
+import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -11,30 +11,36 @@ public class RacingController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final RacingService racingService;
 
-    public RacingController(InputView inputView, OutputView outputView, RacingService racingService) {
+    public RacingController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.racingService = racingService;
     }
 
     public void racingFlow() {
         final List<String> carNames = inputView.inputCarNames();
 
-        final List<Car> cars = racingService.saveCars(carNames);
+        Cars cars = saveCars(carNames);
 
         final long racingFrequency = inputView.inputRacingFrequency();
 
         outputView.outputRacingResultMessage();
+        racingResult(racingFrequency, cars);
 
+        List<Car> winners = cars.judgeWinner();
+        outputView.outputWinner(winners);
+    }
+
+    private Cars saveCars(List<String> carNames) {
+        final List<Car> carList = Car.fromNames(carNames);
+
+        return new Cars(carList);
+    }
+
+    private void racingResult(long racingFrequency, Cars cars) {
         for(long i = 0; i < racingFrequency; i++) {
-            racingService.moveCars(cars);
+            cars.moveCars();
             outputView.outputRacingResult(cars);
         }
-
-        List<Car> winners = racingService.judgeWinner(cars);
-
-        outputView.outputWinner(winners);
     }
 }

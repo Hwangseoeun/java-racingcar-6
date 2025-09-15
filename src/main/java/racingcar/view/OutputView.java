@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.model.Car;
+import racingcar.model.Cars;
 
 import java.util.List;
 
@@ -9,11 +10,12 @@ public class OutputView {
     private static final int MIN_WINNER_COUNT = 1;
 
     public void outputRacingResultMessage() {
+        System.out.println();
         System.out.println("실행 결과");
     }
 
-    public void outputRacingResult(List<Car> cars) {
-        for(Car car : cars) {
+    public void outputRacingResult(Cars cars) {
+        for(Car car : cars.getCars()) {
             System.out.println(car.getName() + " : " + convertPositionPrintType(car));
         }
         System.out.println();
